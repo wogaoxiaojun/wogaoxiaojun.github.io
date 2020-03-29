@@ -152,6 +152,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Google VM安装V2ray" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/">Google VM安装V2ray</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/" class="archive-article-date">
+  	<time datetime="2020-03-29T13:49:31.598Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. GCP创建VM实例</strong>  Computer Engine→VM实例→创建实例  除非你是大佬，或者能够自行处理类似 command not found 的问题，否则请你使用 Debian 8+或者 Ubuntu 16+的系统。<br><strong>2.创建防火墙规则</strong>  VPC网络→防火墙规则→创建防火墙规则</p>
+<p>出站、入站：0.0.0.0/0</p>
+<p><strong>3. VM实例申请静态IP</strong></p>
+<p>测试下ip的ping连接速度，直接将临时ip改成静态ip</p>
+<p><strong>4. 打开VM实例SSH页</strong><br><strong>5. 获取管理员权限</strong>  命令：sudo -i<br><strong>6. 安装V2Ray</strong>  1）一键安装：bash &lt;(curl -s -L <a href="https://git.io/v2ray.sh" target="_blank" rel="noopener">https://git.io/v2ray.sh</a>)<br>要求：Ubuntu 16+ / Debian 8+ / CentOS 7+ 系统推荐使用 Debian 9 系统，脚本会自动启用 BBR 优化。不推荐使用 Debian 8 系统，因为 Caddy 申请证书可能会出现一些莫名其妙的问题<br>如果提示 curl: command not found ，那是因为你的 VPS 没装 Curlubuntu/debian 系统安装 Curl 方法: apt-get update -y &amp;&amp; apt-get install curl -ycentos 系统安装 Curl 方法: yum update -y &amp;&amp; yum install curl -y安装好 curl 之后就能安装脚本了<br>安装完成后，输入 v2ray 即可管理 V2Ray<br><strong>7. 配置BBR加速，配置完成后重启机器</strong>wget -N –no-check-certificate “<a href="https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot;chmod" target="_blank" rel="noopener">https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot;chmod</a> +x tcp.sh./tcp.sh<br>安装后，执行lsmod | grep bbr，显示有bbrplus则开启成功</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

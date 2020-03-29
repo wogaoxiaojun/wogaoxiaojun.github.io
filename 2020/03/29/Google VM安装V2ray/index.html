@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Kevin&#39;s blog</title>
+  <title>Google VM安装V2ray | Kevin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kevin&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="1. GCP创建VM实例  Computer Engine→VM实例→创建实例  除非你是大佬，或者能够自行处理类似 command not found 的问题，否则请你使用 Debian 8+或者 Ubuntu 16+的系统。2.创建防火墙规则  VPC网络→防火墙规则→创建防火墙规则 出站、入站：0.0.0.0&#x2F;0 3. VM实例申请静态IP 测试下ip的ping连接速度，直接将临时ip改成静">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google VM安装V2ray">
+<meta property="og:url" content="http://yoursite.com/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/index.html">
 <meta property="og:site_name" content="Kevin&#39;s blog">
+<meta property="og:description" content="1. GCP创建VM实例  Computer Engine→VM实例→创建实例  除非你是大佬，或者能够自行处理类似 command not found 的问题，否则请你使用 Debian 8+或者 Ubuntu 16+的系统。2.创建防火墙规则  VPC网络→防火墙规则→创建防火墙规则 出站、入站：0.0.0.0&#x2F;0 3. VM实例申请静态IP 测试下ip的ping连接速度，直接将临时ip改成静">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-29T13:49:31.598Z">
+<meta property="article:modified_time" content="2020-03-29T13:50:07.922Z">
 <meta property="article:author" content="子纯">
 <meta name="twitter:card" content="summary">
   
@@ -150,103 +154,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Google VM安装V2ray" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Google VM安装V2ray
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/" class="archive-article-date">
+
+        
+        <a href="/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/" class="archive-article-date">
   	<time datetime="2020-03-29T13:49:31.598Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/">Google VM安装V2ray</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. GCP创建VM实例</strong>  Computer Engine→VM实例→创建实例  除非你是大佬，或者能够自行处理类似 command not found 的问题，否则请你使用 Debian 8+或者 Ubuntu 16+的系统。<br><strong>2.创建防火墙规则</strong>  VPC网络→防火墙规则→创建防火墙规则</p>
+<p>出站、入站：0.0.0.0/0</p>
+<p><strong>3. VM实例申请静态IP</strong></p>
+<p>测试下ip的ping连接速度，直接将临时ip改成静态ip</p>
+<p><strong>4. 打开VM实例SSH页</strong><br><strong>5. 获取管理员权限</strong>  命令：sudo -i<br><strong>6. 安装V2Ray</strong>  1）一键安装：bash &lt;(curl -s -L <a href="https://git.io/v2ray.sh" target="_blank" rel="noopener">https://git.io/v2ray.sh</a>)<br>要求：Ubuntu 16+ / Debian 8+ / CentOS 7+ 系统推荐使用 Debian 9 系统，脚本会自动启用 BBR 优化。不推荐使用 Debian 8 系统，因为 Caddy 申请证书可能会出现一些莫名其妙的问题<br>如果提示 curl: command not found ，那是因为你的 VPS 没装 Curlubuntu/debian 系统安装 Curl 方法: apt-get update -y &amp;&amp; apt-get install curl -ycentos 系统安装 Curl 方法: yum update -y &amp;&amp; yum install curl -y安装好 curl 之后就能安装脚本了<br>安装完成后，输入 v2ray 即可管理 V2Ray<br><strong>7. 配置BBR加速，配置完成后重启机器</strong>wget -N –no-check-certificate “<a href="https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot;chmod" target="_blank" rel="noopener">https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot;chmod</a> +x tcp.sh./tcp.sh<br>安装后，执行lsmod | grep bbr，显示有bbrplus则开启成功</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>请UP主吃鸡腿<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/29/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-03-29T12:08:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/29/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的第一篇博客文章</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/29/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Google VM安装V2ray" data-title="Google VM安装V2ray" data-url="http://yoursite.com/2020/03/29/Google%20VM%E5%AE%89%E8%A3%85V2ray/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/29/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-29T07:43:16.380Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/29/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +350,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
